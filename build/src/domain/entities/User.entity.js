@@ -8,11 +8,19 @@ const mongoose_1 = __importDefault(require("mongoose"));
 // Schema
 const userEntity = () => {
     let userSchema = new mongoose_1.default.Schema({
-        name: String,
-        email: String,
-        age: Number,
+        first_name: { type: String, required: true },
+        last_name: { type: String, required: true },
+        email: { type: String, required: true },
+        password: { type: String, required: true },
+        telephone: { type: String, required: true },
+        last_login: { type: Date, required: true },
+        birth: { type: Date, required: true },
+        gender: { type: String, required: true },
+        status: { type: String, required: true },
+        payment: { type: String, required: true },
+        address: { type: String, required: true },
     });
-    return mongoose_1.default.models["users"] || mongoose_1.default.model("users", userSchema);
+    return mongoose_1.default.models.users || mongoose_1.default.model("users", userSchema);
 };
 exports.userEntity = userEntity;
 //# sourceMappingURL=User.entity.js.map
