@@ -4,7 +4,8 @@
 ### Node ###
 # avoid build code #
 build/
-src/
+*.js
+build/src/
 *.js
 
 # Logs
