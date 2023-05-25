@@ -2,6 +2,11 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=node,visualstudiocode
 
 ### Node ###
+# avoid build code #
+build/
+src/
+*.js
+
 # Logs
 logs
 *.log
@@ -90,10 +95,12 @@ web_modules/
 # Next.js build output
 .next
 out
+build
 
 # Nuxt.js build / generate output
 .nuxt
 dist
+build
 
 # Gatsby files
 .cache/
@@ -159,8 +166,5 @@ dist
 # Ignore all local history of files
 .history
 .ionide
-
-### avoid build code ###
-build/
 
 # End of https://www.toptal.com/developers/gitignore/api/node,visualstudiocode

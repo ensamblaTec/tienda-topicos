@@ -34,6 +34,10 @@ server.use(
   })
 );
 
+// * Content Type Config
+server.use(express.urlencoded({ extended: true, limit: "20mb" }));
+server.use(express.json({ limit: "20mb" }));
+
 // Define SERVER to use /api/v1 and execute rootRouter
 // From this point onover:  http://localhost:8000/api/v1/...
 server.use("/api/v1", routes);
@@ -47,10 +51,6 @@ mongoose.connect(`mongodb+srv://wedeeb:${process.env.PASSWORD_MONGO}@projects.ca
 // * Security Config
 server.use(helmet());
 server.use(cors());
-
-// * Content Type Config
-server.use(express.urlencoded({ extended: true, limit: "20mb" }));
-server.use(express.json({ limit: "20mb" }));
 
 // * Redirections Config
 

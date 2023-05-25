@@ -1,4 +1,4 @@
-export interface Category {
+export interface ICategory {
     category: string;
     description: string;
     created_at: Date;

@@ -9,8 +9,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAllUserAddress = void 0;
-const UserAddress_entity_1 = require("../entities/UserAddress.entity");
+exports.create = exports.getAllUserAddress = void 0;
+const Address_entity_1 = require("../entities/Address.entity");
 const logger_1 = require("../../utils/logger");
 // CRUD REQUEST
 /**
@@ -18,9 +18,9 @@ const logger_1 = require("../../utils/logger");
  */
 const getAllUserAddress = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        let userAddressModel = (0, UserAddress_entity_1.userAddressEntity)();
+        let addrModel = (0, Address_entity_1.userAddressEntity)();
         // Search all users
-        const users = yield userAddressModel.find({});
+        const users = yield addrModel.find({});
         (0, logger_1.LogSuccess)("[ORM SUCCESS]: Getting all users address");
         return users;
     }
@@ -30,6 +30,18 @@ const getAllUserAddress = () => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.getAllUserAddress = getAllUserAddress;
+const create = (address) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        let addrModel = (0, Address_entity_1.userAddressEntity)();
+        // Search all users
+        const addr = yield addrModel.create(address);
+        (0, logger_1.LogSuccess)("[ORM SUCCESS]: Getting all users address");
+    }
+    catch (error) {
+        (0, logger_1.LogError)(`[ORM ERROR]: creating user address`);
+    }
+});
+exports.create = create;
 // TODO
 // GET user by email
 // Delete user by id

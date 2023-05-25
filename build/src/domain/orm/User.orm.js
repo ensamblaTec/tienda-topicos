@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getUserByID = exports.getAllUsers = void 0;
+exports.getAllPayments = exports.createOneUser = exports.updateOneUser = exports.getUserByID = exports.getAllUsers = void 0;
 const User_entity_1 = require("../entities/User.entity");
 const logger_1 = require("../../utils/logger");
 // CRUD REQUEST
@@ -43,6 +43,47 @@ const getUserByID = (id) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.getUserByID = getUserByID;
+const updateOneUser = (user, id) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        // user model
+        let userModel = (0, User_entity_1.userEntity)();
+        // Search user by id
+        const usr = yield userModel.findOneAndUpdate({ _id: id }, user, {
+            new: true,
+        });
+        return usr;
+    }
+    catch (error) {
+        (0, logger_1.LogError)(`[ORM ERROR]: Updating user by id`);
+    }
+});
+exports.updateOneUser = updateOneUser;
+const createOneUser = (user) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        // User model
+        let userModel = (0, User_entity_1.userEntity)();
+        // create user
+        const usr = yield userModel.create(user);
+        return usr;
+    }
+    catch (error) {
+        (0, logger_1.LogError)(`[ORM ERROR]: creating an user ${error}`);
+    }
+});
+exports.createOneUser = createOneUser;
+const getAllPayments = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        let userModel = (0, User_entity_1.userEntity)();
+        // Obtain a response
+        const payments = yield userModel.find({ _id: id }, { payment: 1, _id: 0 });
+        return payments;
+    }
+    catch (error) {
+        (0, logger_1.LogError)(`[ORM ERROR]: getting paymenst to use with id ${id} ${error}`);
+        return undefined;
+    }
+});
+exports.getAllPayments = getAllPayments;
 // TODO
 // GET user by id
 // GET user by email

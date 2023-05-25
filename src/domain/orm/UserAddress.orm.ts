@@ -1,4 +1,4 @@
-import { userAddressEntity } from "../entities/UserAddress.entity";
+import { userAddressEntity } from "../entities/Address.entity";
 import { LogError, LogSuccess } from "../../utils/logger";
 
 // CRUD REQUEST
@@ -8,9 +8,9 @@ import { LogError, LogSuccess } from "../../utils/logger";
  */
 export const getAllUserAddress = async (): Promise<any[] | undefined> => {
   try {
-    let userAddressModel = userAddressEntity();
+    let addrModel = userAddressEntity();
     // Search all users
-    const users = await userAddressModel.find({});
+    const users = await addrModel.find({});
     LogSuccess("[ORM SUCCESS]: Getting all users address");
     return users;
   } catch (error) {
@@ -19,6 +19,16 @@ export const getAllUserAddress = async (): Promise<any[] | undefined> => {
   }
 };
 
+export const create = async (address: Object): Promise<any | undefined> => {
+  try {
+    let addrModel = userAddressEntity();
+    // Search all users
+    const addr = await addrModel.create(address);
+    LogSuccess("[ORM SUCCESS]: Getting all users address");
+  } catch (error) {
+    LogError(`[ORM ERROR]: creating user address`);
+  }
+}
 // TODO
 
 // GET user by email

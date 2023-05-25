@@ -3,21 +3,23 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProductEntity = void 0;
+exports.productEntity = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
 // Schema Product
-const ProductEntity = () => {
+const productEntity = () => {
     let productSchema = new mongoose_1.default.Schema({
-        product: String,
-        description: String,
-        price: Number,
-        id_inventory: Number,
-        id_discount: Number,
-        id_supplier: Number,
-        created_at: Date,
-        updated_at: Date,
-        deleted_at: Date
+        product: { type: String, required: true },
+        description: { type: String, required: true },
+        price: { type: Number, required: true },
+        inventory: { type: Object, required: true },
+        id_supplier: { type: String, required: true },
+        category: { type: [String], required: true },
+        discount: { type: [Object], required: false },
+        created_at: { type: Date, required: true },
+        updated_at: { type: Date, required: false },
+        deleted_at: { type: Date, required: false },
     });
+    return mongoose_1.default.models.products || mongoose_1.default.model("products", productSchema);
 };
-exports.ProductEntity = ProductEntity;
+exports.productEntity = productEntity;
 //# sourceMappingURL=Product.entity.js.map

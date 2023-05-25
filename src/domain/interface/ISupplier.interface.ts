@@ -1,4 +1,4 @@
-export interface Supplier {
+export interface ISupplier {
     supplier: string;
     first_name: string;
     last_name: string;

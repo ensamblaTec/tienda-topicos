@@ -7,16 +7,16 @@ exports.supplierEntity = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
 // Schema
 const supplierEntity = () => {
-    let categorySchema = new mongoose_1.default.Schema({
-        Supplier: String,
-        firstName: String,
-        lastName: String,
+    let supplierSchema = new mongoose_1.default.Schema({
+        supplier: String,
+        first_name: String,
+        last_name: String,
         telephone: String,
         created_at: Date,
         updated_at: Date,
         deleted_at: Date
     });
-    return mongoose_1.default.models.Suppliers || mongoose_1.default.model('suppliers', categorySchema);
+    return mongoose_1.default.models.suppliers || mongoose_1.default.model('suppliers', supplierSchema);
 };
 exports.supplierEntity = supplierEntity;
 //# sourceMappingURL=Supplier.entity.js.map

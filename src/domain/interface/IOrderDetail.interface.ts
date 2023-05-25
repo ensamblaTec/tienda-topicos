@@ -1,6 +1,6 @@
+import { order } from '../../controller/types';
 import { IPayment } from './IPayment.interface';
 import { IProduct } from './IProduct.interface';
-import { order } from './types.interface';
 
 export interface IOrderDetail {
     quantity: number;

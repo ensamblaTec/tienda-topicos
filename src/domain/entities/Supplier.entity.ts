@@ -1,16 +1,17 @@
 import mongoose from "mongoose";
+import { ISupplier } from "../interface/ISupplier.interface";
 
 // Schema
 export const supplierEntity = () => {
-  let categorySchema = new mongoose.Schema({
-    Supplier: String,
-    firstName: String,
-    lastName: String,
+  let supplierSchema = new mongoose.Schema<ISupplier>({
+    supplier: String,
+    first_name: String,
+    last_name: String,
     telephone: String,
     created_at: Date,
     updated_at: Date,
     deleted_at: Date
   });
   
-  return mongoose.models.Suppliers || mongoose.model('suppliers', categorySchema)
+  return mongoose.models.suppliers || mongoose.model<ISupplier>('suppliers', supplierSchema)
 };

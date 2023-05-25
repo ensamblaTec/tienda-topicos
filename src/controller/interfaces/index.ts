@@ -8,7 +8,7 @@ export interface IUserController {
   // Read all users from database
   getUsers(): Promise<any>;
   // Find User by ID (ObjectID)
-  getUserByID(id: string): Promise<any>
+  getUserByID(id: string): Promise<any>;
 }
 
 export interface IUserAddressController {
@@ -39,4 +39,15 @@ export interface IDiscountController {
 export interface IPaymentController {
   // Read all users from database
   getPayments(): Promise<any>;
+}
+
+export interface IProductController {
+  // Read all products
+  getProducts(): Promise<any>;
+  // Get product
+  getProduct(id: string): Promise<any>;
+  // Update product
+  updateProduct(product: Object, id: string): Promise<any>
+  // Create product
+  createProduct(product: Object): Promise<any>;
 }

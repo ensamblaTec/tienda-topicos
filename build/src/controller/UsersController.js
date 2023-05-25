@@ -46,10 +46,50 @@ let UserController = class UserController {
     getUserByID(id) {
         return __awaiter(this, void 0, void 0, function* () {
             (0, logger_1.LogSuccess)(`[/api/v1/users] Get user by ID: ${id}`);
-            const response = yield (0, User_orm_1.getUserByID)("1");
-            return {
-                message: `Obtaining user with ID: ${id}`
-            };
+            const response = yield (0, User_orm_1.getUserByID)(id);
+            return response;
+        });
+    }
+    /**
+     * Endpoint to update an user by ID from Collection 'users' of Mongo Server
+     * @param {Object} user User Object
+     * @returns User or undefided value
+     */
+    updateUserByID(user, id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            (0, logger_1.LogSuccess)(`[/api/v1/users] Update user with properties: ${user}`);
+            const response = yield (0, User_orm_1.updateOneUser)(user, id);
+            return response;
+        });
+    }
+    /**
+     * Endpoint to update an user by ID from Collection 'users' of Mongo Server
+     * @param {Object} user User Object
+     * @returns User or undefided value
+     */
+    create(user) {
+        return __awaiter(this, void 0, void 0, function* () {
+            (0, logger_1.LogSuccess)(`[/api/v1/users] create user with properties: ${user}`);
+            const response = yield (0, User_orm_1.createOneUser)(user);
+            return response;
+        });
+    }
+    /**
+     * Endpoint to get all payments by id user from Collection 'users' of Mongo Server
+     * @param {string} id ID user
+     * @returns Payments array
+     */
+    getPayments(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            (0, logger_1.LogSuccess)(`[/api/v1/users/:id/payments] create user with properties: ${id}`);
+            const response = yield (0, User_orm_1.getAllPayments)(id).then((p) => {
+                if (!p) {
+                    return [];
+                }
+                const payment = p[0].payment;
+                return payment;
+            });
+            return response;
         });
     }
 };
@@ -66,6 +106,28 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "getUserByID", null);
+__decorate([
+    (0, tsoa_1.Put)("/:id"),
+    __param(0, (0, tsoa_1.Query)()),
+    __param(1, (0, tsoa_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "updateUserByID", null);
+__decorate([
+    (0, tsoa_1.Post)("/"),
+    __param(0, (0, tsoa_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "create", null);
+__decorate([
+    (0, tsoa_1.Get)("/:id/payments"),
+    __param(0, (0, tsoa_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "getPayments", null);
 UserController = __decorate([
     (0, tsoa_1.Route)("/api/v1/users"),
     (0, tsoa_1.Tags)("UserController")

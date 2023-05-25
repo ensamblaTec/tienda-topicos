@@ -7,11 +7,16 @@ exports.discountEntity = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
 // Schema
 const discountEntity = () => {
-    let categorySchema = new mongoose_1.default.Schema({
-        category: String,
-        description: String,
+    let discountSchema = new mongoose_1.default.Schema({
+        discount: { type: String, required: true },
+        percentage: { type: Number, required: true },
+        description: { type: String, required: true },
+        status: { type: Boolean, required: true },
+        created_at: { type: Date, required: true },
+        updated_at: { type: Date, required: true },
+        deleted_at: { type: Date, required: true },
     });
-    return mongoose_1.default.models.Discounts || mongoose_1.default.model('discounts', categorySchema);
+    return mongoose_1.default.models.discounts || mongoose_1.default.model('discounts', discountSchema);
 };
 exports.discountEntity = discountEntity;
 //# sourceMappingURL=Discount.entity.js.map

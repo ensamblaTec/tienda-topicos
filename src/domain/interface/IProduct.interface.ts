@@ -5,8 +5,8 @@ export interface IProduct {
     category: string[];
     discount?: string;
     id_supplier: string;
-    id_inventory: string;
-    create_at: Date;
-    update_at: Date;
-    delete_at: Date;
+    inventory: Object;
+    created_at: Date;
+    updated_at: Date;
+    deleted_at: Date;
 }
