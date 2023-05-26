@@ -9,18 +9,18 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAllCategories = void 0;
+exports.getAllCatgories = void 0;
 const logger_1 = require("../../utils/logger");
-const Category_entity_1 = require("../entities/Category.entity");
+const Product_entity_1 = require("../entities/Product.entity");
 // CRUD REQUEST
 /**
  * Method to obtain all Categories from Collection "categories" in Mongo Server
  */
-const getAllCategories = () => __awaiter(void 0, void 0, void 0, function* () {
+const getAllCatgories = (limit) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        let categoryModel = (0, Category_entity_1.categoryEntity)();
+        let productModel = (0, Product_entity_1.productEntity)();
         // Search all categories
-        const categories = yield categoryModel.find({});
+        const categories = yield productModel.find({}, { category: 1, _id: 0 }).limit(limit || 10);
         (0, logger_1.LogSuccess)('[ORM SUCCESS]: Getting all categories');
         return categories;
     }
@@ -29,7 +29,7 @@ const getAllCategories = () => __awaiter(void 0, void 0, void 0, function* () {
         return undefined;
     }
 });
-exports.getAllCategories = getAllCategories;
+exports.getAllCatgories = getAllCatgories;
 // TODO
 // GET user by id
 // GET user by email

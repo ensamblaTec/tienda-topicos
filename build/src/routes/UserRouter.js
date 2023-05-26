@@ -77,7 +77,7 @@ userRouter
     if (user.payment) {
         let payments = yield controller.getPayments(req.params.id);
         const payment = payments.find(p => p.no_account === user.payment.no_account);
-        if (payment == undefined) {
+        if (payment === undefined) {
             payments.splice(0, 0, user.payment);
         }
         user.payment = payments;

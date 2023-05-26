@@ -1,16 +1,16 @@
 import { LogError, LogSuccess } from "../../utils/logger";
-import { categoryEntity } from "../entities/Category.entity";
+import { productEntity } from "../entities/Product.entity";
 
 // CRUD REQUEST
 
 /**
  * Method to obtain all Categories from Collection "categories" in Mongo Server
  */
-export const getAllCategories = async (): Promise<any[] | undefined> => {
+export const getAllCatgories = async (limit?: number): Promise<any[] | undefined> => {
     try {
-        let categoryModel = categoryEntity()
+        let productModel = productEntity()
         // Search all categories
-        const categories = await categoryModel.find({})
+        const categories = await productModel.find({}, {category: 1, _id: 0}).limit(limit || 10)
         LogSuccess('[ORM SUCCESS]: Getting all categories')
         return categories
     } catch (error) {

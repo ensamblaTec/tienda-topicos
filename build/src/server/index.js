@@ -29,6 +29,9 @@ server.use("/docs", swagger_ui_express_1.default.serve, swagger_ui_express_1.def
 // * Content Type Config
 server.use(express_1.default.urlencoded({ extended: true, limit: "20mb" }));
 server.use(express_1.default.json({ limit: "20mb" }));
+// * Security Config
+server.use((0, helmet_1.default)());
+server.use((0, cors_1.default)());
 // Define SERVER to use /api/v1 and execute rootRouter
 // From this point onover:  http://localhost:8000/api/v1/...
 server.use("/api/v1", routes_1.default);
@@ -36,9 +39,6 @@ server.use("/api/v1", routes_1.default);
 server.use(express_1.default.static("public"));
 // TODO: Mongoose Connection ${process.env.PASSWORD_MONGO}
 mongoose_1.default.connect(`mongodb+srv://wedeeb:${process.env.PASSWORD_MONGO}@projects.camurfu.mongodb.net/tapw-ecommerce?retryWrites=true&w=majority`);
-// * Security Config
-server.use((0, helmet_1.default)());
-server.use((0, cors_1.default)());
 // * Redirections Config
 // http://localhost:8000/ -> http://localhost:8000/api
 server.get("/", (_, res) => {

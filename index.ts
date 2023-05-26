@@ -6,7 +6,7 @@ import { LogError, LogSuccess } from './src/utils/logger';
 // * Configuration the .env file
 dotenv.config();
 
-const port: string | number = process.env.PORT || 8000;
+const port: string | number = process.env.PORT || 3000;
 
 // Execute SERVER
 server.listen(port, () => {

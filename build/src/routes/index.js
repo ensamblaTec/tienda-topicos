@@ -12,6 +12,7 @@ const logger_1 = require("../utils/logger");
 // import helloRouter from "./HelloRouter";
 const UserRouter_1 = __importDefault(require("./UserRouter"));
 const Product_Router_1 = __importDefault(require("./Product.Router"));
+const CategoryRouter_1 = __importDefault(require("./CategoryRouter"));
 // Server instance
 let server = (0, express_1.default)();
 // Router instance
@@ -28,6 +29,7 @@ server.use('/', rootRouter); // GET: http://localhost:8000/api/v1/
 // server.use('/hello', helloRouter); // GET: http://localhost:8000/api/v1/hello -> HelloRouter
 server.use('/users', UserRouter_1.default); // GET: http://localhost:8000/api/v1/users -> UserRouter
 server.use('/products', Product_Router_1.default); // GET: http://localhost:8000/api/v1/products -> ProductRouter
+server.use('/categories', CategoryRouter_1.default); // GET: http://localhost:8000/api/v1/categories -> CategoryRouter
 // Add more routes to the app
 exports.default = server;
 //# sourceMappingURL=index.js.map

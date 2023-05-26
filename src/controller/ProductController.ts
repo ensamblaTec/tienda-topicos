@@ -9,6 +9,7 @@ import {
   updateProductByID,
   deleteProductByID,
   createProduct,
+  getCategoriesByProductId,
 } from "../domain/orm/Product.orm";
 
 @Route("/api/v1/products")
@@ -19,10 +20,10 @@ export class ProductController implements IProductController {
    * @returns all products
    */
   @Get("/")
-  public async getProducts(): Promise<any> {
+  public async getProducts(@Query() limit?: number, @Query() category?: string): Promise<any> {
     LogSuccess("[/api/v1/products] get all products request");
 
-    const response = await getAllProducts();
+    const response = await getAllProducts(limit, category);
 
     return response;
   }
@@ -43,7 +44,7 @@ export class ProductController implements IProductController {
 
   /**
    *
-   * @param {Object} product Product with update properties
+   * @param product Product with update properties
    * @param {string} id ID product
    * @returns product response
    */
@@ -55,14 +56,14 @@ export class ProductController implements IProductController {
     LogSuccess(
       `[/api/v1/products] Update product with properties: ${product} and id ${id}`
     );
-    
+
     const response = await updateProductByID(product, id);
 
     return response;
   }
 
   /**
-   * 
+   *
    * @param {Object} product Product Object
    * @returns product response
    */
@@ -72,6 +73,26 @@ export class ProductController implements IProductController {
 
     const response = await createProduct(product);
 
+    return response;
+  }
+
+  /**
+   *
+   * @param {string} id ID Product
+   * @returns an array categories
+   */
+  @Get("/:id")
+  public async getCategories(@Query() id: string): Promise<any[]> {
+    LogSuccess(`get categories from product with id ${id}`);
+
+    const response = await getCategoriesByProductId(id).then((categories) => {
+      if (!categories) {
+        return [];
+      }
+      const { category } = categories[0];
+      LogSuccess(`get categories ${category}`);
+      return category;
+    });
     return response;
   }
 }

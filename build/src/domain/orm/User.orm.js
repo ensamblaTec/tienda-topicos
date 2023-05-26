@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAllPayments = exports.createOneUser = exports.updateOneUser = exports.getUserByID = exports.getAllUsers = void 0;
+exports.getAllPayments = exports.createOneUser = exports.updateOneUser = exports.getUserByID = exports.getUsersLimited = exports.getAllUsers = void 0;
 const User_entity_1 = require("../entities/User.entity");
 const logger_1 = require("../../utils/logger");
 // CRUD REQUEST
@@ -30,6 +30,18 @@ const getAllUsers = () => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.getAllUsers = getAllUsers;
+const getUsersLimited = (limit) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        // User Model
+        (0, logger_1.LogSuccess)(`[ORM SUCCESS] get users limited by ${limit}`);
+        return;
+    }
+    catch (error) {
+        (0, logger_1.LogError)(`[ORM ERROR] cannot get users`);
+        return;
+    }
+});
+exports.getUsersLimited = getUsersLimited;
 // GET user by id
 const getUserByID = (id) => __awaiter(void 0, void 0, void 0, function* () {
     try {

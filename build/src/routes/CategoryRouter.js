@@ -13,11 +13,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const CategoryController_1 = require("@/controller/CategoryController");
+const CategoryController_1 = require("../controller/CategoryController");
 // Router from express
-let userRouter = express_1.default.Router();
+let categoryRouter = express_1.default.Router();
 // GET -> http://localhost:8000/api/v1/categories
-userRouter.route("/").get((_, res) => __awaiter(void 0, void 0, void 0, function* () {
+categoryRouter.route("/").get((_, res) => __awaiter(void 0, void 0, void 0, function* () {
     // Controller Instance to execute method
     const controller = new CategoryController_1.CategoryController();
     // Obtain Response
@@ -27,5 +27,5 @@ userRouter.route("/").get((_, res) => __awaiter(void 0, void 0, void 0, function
     return res.status(200).send(response);
 }));
 // Export Hello Router
-exports.default = userRouter;
+exports.default = categoryRouter;
 //# sourceMappingURL=CategoryRouter.js.map

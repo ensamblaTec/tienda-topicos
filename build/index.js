@@ -8,7 +8,7 @@ const server_1 = __importDefault(require("./src/server"));
 const logger_1 = require("./src/utils/logger");
 // * Configuration the .env file
 dotenv_1.default.config();
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 3000;
 // Execute SERVER
 server_1.default.listen(port, () => {
     (0, logger_1.LogSuccess)(`[SERVER ON]: Running at http://localhost:${port}`);

@@ -8,11 +8,18 @@ let productRouter = express.Router();
 // GET, PUT -> http://localhost:8000/api/v1/products
 productRouter
   .route("/")
-  .get(async (_: Request, res: Response) => {
+  .get(async (req: Request, res: Response) => {
     // Controller instance to execute method
     const controller: ProductController = new ProductController();
     // Obtain response
-    const response = await controller.getProducts();
+    let response: any = [];
+    const limit: any = req?.query?.limit;
+    const category: any = req?.query?.category
+    if (!limit || !category) {
+      response = await controller.getProducts();
+    } else {
+      response = await controller.getProducts(limit, category);
+    }
     // Send to the client the response
     return res.status(200).json(response);
   })
@@ -45,16 +52,26 @@ productRouter
     // Controller instance to execute method
     const controller: ProductController = new ProductController();
     // Obtain a response
-    const response = await controller;
+    // const response = await controller;
+    return res.status(200).send("");
   })
   .put(async (req: Request, res: Response) => {
-    // Controller instance to execute method
-    const controller: ProductController = new ProductController();
-    // Verify 
     let p = {
       ...req.body,
-      updated_at: Date.now()
+      updated_at: Date.now(),
     };
+    // Controller instance to execute method
+    const controller: ProductController = new ProductController();
+    // category
+    if (p.category) {
+      const categories = await controller.getCategories(req.params.id);
+      if (
+        categories.find((category) => category === p.category) === undefined
+      ) {
+        categories.splice(0, 0, p.category);
+      }
+      p.category = categories;
+    }
     // Obtain a response
     const response = await controller.updateProduct(p, req.params.id);
     // send response

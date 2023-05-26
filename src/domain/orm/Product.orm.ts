@@ -7,12 +7,12 @@ import { productEntity } from "../entities/Product.entity";
 /**
  * Method to obtain all Users from Collection "products" in Mongo Server
  */
-export const getAllProducts = async (): Promise<any[] | undefined> => {
+export const getAllProducts = async (limit?: number, category?: string): Promise<any[] | undefined> => {
   try {
     // Product Model
     const productModel = productEntity();
     // Search all products
-    const response = await productModel.find({});
+    const response = await productModel.find({category} || {}).limit(limit || 50);
     // return all users
     return response;
   } catch (error) {
@@ -99,3 +99,47 @@ export const createProduct = async (
     return undefined;
   }
 };
+
+export const getCategoriesByProductId = async (
+  id: string
+): Promise<any | undefined> => {
+  try {
+    // Product Model
+    const productModel = productEntity();
+    // Search all products
+    const response = await productModel.find(
+      { _id: id },
+      { category: 1, _id: 0 }
+    );
+    // return all users
+    return response;
+  } catch (error) {
+    LogError(`[ORM ERROR] cannot get product`);
+    return undefined;
+  }
+};
+
+export const getProductsLimit = async (limit: number) => {
+  try {
+    // product model
+    const productModel = productEntity();
+    // Search by limit
+    const response = await productModel.find({}).limit(limit);
+    // return response
+    return response;
+  } catch (error) {
+    LogError(`[ORM ERROR] cannot get product`);
+    return undefined;
+  }
+};
+
+export const getProductsByCategory = async (limit: number) => {
+  try {
+    // product model
+    const productModel = productEntity()
+    // Search by category
+    
+  } catch (error) {
+    
+  }
+}

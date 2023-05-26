@@ -3,7 +3,7 @@ export interface IProduct {
     description: string;
     price: number;
     category: string[];
-    discount?: string;
+    discount?: Object;
     id_supplier: string;
     inventory: Object;
     created_at: Date;

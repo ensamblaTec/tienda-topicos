@@ -43,11 +43,24 @@ export interface IPaymentController {
 
 export interface IProductController {
   // Read all products
-  getProducts(): Promise<any>;
+  getProducts(limit?: number): Promise<any>;
   // Get product
   getProduct(id: string): Promise<any>;
   // Update product
   updateProduct(product: Object, id: string): Promise<any>
   // Create product
   createProduct(product: Object): Promise<any>;
+}
+
+export interface IOrderDetailController {
+  // Read all orders
+  getAllOrderDetails(): Promise<any>
+  // Read order
+  getOrderDetailByID(): Promise<any>
+  // Update order
+  updateOrderDetailByID(): Promise<any>
+  // Create order
+  createOrderDetail(): Promise<any>
+  // delete order
+  deleteOrderDetailByID(): Promise<any>
 }

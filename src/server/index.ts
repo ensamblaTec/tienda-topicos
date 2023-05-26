@@ -38,6 +38,10 @@ server.use(
 server.use(express.urlencoded({ extended: true, limit: "20mb" }));
 server.use(express.json({ limit: "20mb" }));
 
+// * Security Config
+server.use(helmet());
+server.use(cors());
+
 // Define SERVER to use /api/v1 and execute rootRouter
 // From this point onover:  http://localhost:8000/api/v1/...
 server.use("/api/v1", routes);
@@ -47,10 +51,6 @@ server.use(express.static("public"));
 
 // TODO: Mongoose Connection ${process.env.PASSWORD_MONGO}
 mongoose.connect(`mongodb+srv://wedeeb:${process.env.PASSWORD_MONGO}@projects.camurfu.mongodb.net/tapw-ecommerce?retryWrites=true&w=majority`)
-
-// * Security Config
-server.use(helmet());
-server.use(cors());
 
 // * Redirections Config
 

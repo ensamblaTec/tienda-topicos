@@ -19,6 +19,18 @@ export const getAllUsers = async (): Promise<any[] | undefined> => {
   }
 };
 
+export const getUsersLimited = async (limit: number): Promise<any[] | undefined> => {
+  try {
+    // User Model
+
+    LogSuccess(`[ORM SUCCESS] get users limited by ${limit}`)
+    return
+  } catch (error) {
+    LogError(`[ORM ERROR] cannot get users`)
+    return
+  }
+}
+
 // GET user by id
 export const getUserByID = async (id: string): Promise<any | undefined> => {
   try {
