@@ -18,7 +18,7 @@ export interface IUserAddressController {
 
 export interface ICategoryController {
   // Read all users from database
-  getCategories(): Promise<any>;
+  getCategories(limit?: number): Promise<any>;
 }
 
 export interface IInventoryController {

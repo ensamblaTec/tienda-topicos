@@ -4,7 +4,7 @@
   "description": "Backend with express, typescript",
   "main": "index.js",
   "scripts": {
-    "swagger": "tsoa spec",
+    "swagger": "tsoa spec && tsc",
     "dev": "concurrently \"npx tsc -w\" \"nodemon -q ./build/index.js\"",
     "test": "jest",
     "serve:coverage": "npm run test && cd ./coverage/lcov-report && npx serve",

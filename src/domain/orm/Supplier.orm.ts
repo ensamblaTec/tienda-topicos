@@ -84,7 +84,7 @@ export const createSupplier = async (supplier: Object): Promise<any> => {
 /**
  * Method to delete a supplier from Collection 'suppliers' in Mongo Server
  */
-export const deleteSupplier = async (id: string): Promise<any> => {};
+// export const deleteSupplier = async (id: string): Promise<any> => {};
 
 // TODO
 // GET user by id

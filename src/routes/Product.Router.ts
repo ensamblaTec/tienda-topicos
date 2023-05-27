@@ -1,5 +1,4 @@
 import express, { Request, Response } from "express";
-import { LogInfo } from "../utils/logger";
 import { ProductController } from "../controller/ProductController";
 
 // Router from express
@@ -14,12 +13,8 @@ productRouter
     // Obtain response
     let response: any = [];
     const limit: any = req?.query?.limit;
-    const category: any = req?.query?.category
-    if (!limit || !category) {
-      response = await controller.getProducts();
-    } else {
-      response = await controller.getProducts(limit, category);
-    }
+    const category: any = req?.query?.category;
+    response = await controller.getProducts(limit, category);
     // Send to the client the response
     return res.status(200).json(response);
   })
@@ -48,9 +43,9 @@ productRouter
     // send Response
     return res.status(200).json(response);
   })
-  .delete(async (req: Request, res: Response) => {
+  .delete(async (_: Request, res: Response) => {
     // Controller instance to execute method
-    const controller: ProductController = new ProductController();
+    // const controller: ProductController = new ProductController();
     // Obtain a response
     // const response = await controller;
     return res.status(200).send("");

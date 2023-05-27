@@ -35,6 +35,7 @@ const create = (address) => __awaiter(void 0, void 0, void 0, function* () {
         let addrModel = (0, Address_entity_1.userAddressEntity)();
         // Search all users
         const addr = yield addrModel.create(address);
+        return addr;
         (0, logger_1.LogSuccess)("[ORM SUCCESS]: Getting all users address");
     }
     catch (error) {

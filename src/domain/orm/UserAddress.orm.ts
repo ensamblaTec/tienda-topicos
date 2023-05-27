@@ -24,6 +24,7 @@ export const create = async (address: Object): Promise<any | undefined> => {
     let addrModel = userAddressEntity();
     // Search all users
     const addr = await addrModel.create(address);
+    return addr
     LogSuccess("[ORM SUCCESS]: Getting all users address");
   } catch (error) {
     LogError(`[ORM ERROR]: creating user address`);

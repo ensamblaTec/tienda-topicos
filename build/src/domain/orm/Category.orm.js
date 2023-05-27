@@ -20,7 +20,7 @@ const getAllCatgories = (limit) => __awaiter(void 0, void 0, void 0, function* (
     try {
         let productModel = (0, Product_entity_1.productEntity)();
         // Search all categories
-        const categories = yield productModel.find({}, { category: 1, _id: 0 }).limit(limit || 10);
+        const categories = yield productModel.find({}, { category: 1, _id: 0 }).limit(limit || 5);
         (0, logger_1.LogSuccess)('[ORM SUCCESS]: Getting all categories');
         return categories;
     }

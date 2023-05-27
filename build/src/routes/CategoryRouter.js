@@ -17,15 +17,16 @@ const CategoryController_1 = require("../controller/CategoryController");
 // Router from express
 let categoryRouter = express_1.default.Router();
 // GET -> http://localhost:8000/api/v1/categories
-categoryRouter.route("/").get((_, res) => __awaiter(void 0, void 0, void 0, function* () {
+categoryRouter.route("/").get((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a;
     // Controller Instance to execute method
     const controller = new CategoryController_1.CategoryController();
     // Obtain Response
-    const response = yield controller.getCategories();
-    console.log(`The response is: ${response}`);
+    const limit = (_a = req === null || req === void 0 ? void 0 : req.query) === null || _a === void 0 ? void 0 : _a.limit;
+    console.log(limit);
+    const response = yield controller.getCategories(limit);
     // Send to the client the response
-    return res.status(200).send(response);
+    return res.status(200).json(response);
 }));
-// Export Hello Router
 exports.default = categoryRouter;
 //# sourceMappingURL=CategoryRouter.js.map

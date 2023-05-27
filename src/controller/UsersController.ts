@@ -1,6 +1,6 @@
 import { Get, Post, Put, Query, Route, Tags } from "tsoa";
 import { IUserController } from "./interfaces";
-import { LogSuccess, LogError } from "../utils/logger";
+import { LogSuccess } from "../utils/logger";
 
 // ORM
 import {
@@ -48,7 +48,7 @@ export class UserController implements IUserController {
    */
   @Put("/:id")
   public async updateUserByID(
-    @Query() user: Object,
+    @Query() user: any,
     @Query() id: string
   ): Promise<any> {
     LogSuccess(`[/api/v1/users] Update user with properties: ${user}`);
@@ -64,7 +64,7 @@ export class UserController implements IUserController {
    * @returns User or undefided value
    */
   @Post("/")
-  public async create(@Query() user: Object): Promise<any> {
+  public async create(@Query() user: any): Promise<any> {
     LogSuccess(`[/api/v1/users] create user with properties: ${user}`);
 
     const response = await createOneUser(user);
@@ -74,11 +74,11 @@ export class UserController implements IUserController {
 
   /**
    * Endpoint to get all payments by id user from Collection 'users' of Mongo Server
-   * @param {string} id ID user
+   * @param {Object} id ID user
    * @returns Payments array
    */
   @Get("/:id/payments")
-  public async getPayments(@Query() id: string): Promise<any[]> {
+  public async getPayments(@Query() id: any): Promise<any[]> {
     LogSuccess(
       `[/api/v1/users/:id/payments] create user with properties: ${id}`
     );

@@ -1,7 +1,6 @@
 import { Get, Post, Put, Query, Route, Tags } from "tsoa";
 import { ISupplierController } from "./interfaces";
-import { LogSuccess, LogError } from "../utils/logger";
-import { BasicResponse } from "./types";
+import { LogSuccess } from "../utils/logger";
 
 // ORM
 import {
@@ -49,7 +48,7 @@ export class SupplierController implements ISupplierController {
    */
   @Put("/:id")
   public async updateSupplier(
-    @Query() supplier: Object,
+    @Query() supplier: any,
     @Query() id: string
   ): Promise<any> {
     LogSuccess("[/api/v1/suppliers] Update supplier request");
@@ -65,7 +64,7 @@ export class SupplierController implements ISupplierController {
    * @returns create response
    */
   @Post("/")
-  public async create(@Query() supplier: Object) {
+  public async create(@Query() supplier: any) {
     LogSuccess("[/api/v1/suppliers] Create supplier request");
 
     const response = await createSupplier(supplier);

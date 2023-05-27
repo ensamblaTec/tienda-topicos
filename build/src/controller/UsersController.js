@@ -76,7 +76,7 @@ let UserController = class UserController {
     }
     /**
      * Endpoint to get all payments by id user from Collection 'users' of Mongo Server
-     * @param {string} id ID user
+     * @param {Object} id ID user
      * @returns Payments array
      */
     getPayments(id) {
@@ -125,7 +125,7 @@ __decorate([
     (0, tsoa_1.Get)("/:id/payments"),
     __param(0, (0, tsoa_1.Query)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "getPayments", null);
 UserController = __decorate([

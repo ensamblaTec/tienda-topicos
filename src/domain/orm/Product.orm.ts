@@ -1,5 +1,4 @@
-import { userEntity } from "../entities/User.entity";
-import { LogError, LogSuccess } from "../../utils/logger";
+import { LogError } from "../../utils/logger";
 import { productEntity } from "../entities/Product.entity";
 
 // CRUD REQUEST
@@ -12,9 +11,10 @@ export const getAllProducts = async (limit?: number, category?: string): Promise
     // Product Model
     const productModel = productEntity();
     // Search all products
-    const response = await productModel.find({category} || {}).limit(limit || 50);
-    // return all users
-    return response;
+    if (!category) {
+      return await productModel.find({}).limit(limit || 50);
+    }
+    return await productModel.find({category}).limit(limit || 50);
   } catch (error) {
     LogError(`[ORM ERROR] cannot get product`);
     return undefined;
@@ -133,13 +133,13 @@ export const getProductsLimit = async (limit: number) => {
   }
 };
 
-export const getProductsByCategory = async (limit: number) => {
-  try {
-    // product model
-    const productModel = productEntity()
-    // Search by category
+// export const getProductsByCategory = async (limit: number) => {
+//   try {
+//     // product model
+//     // const productModel = productEntity()
+//     // Search by category
     
-  } catch (error) {
+//   } catch (error) {
     
-  }
-}
+//   }
+// }

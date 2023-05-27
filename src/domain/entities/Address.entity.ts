@@ -4,7 +4,6 @@ import { IAddress } from "../interface/IAddress.interface";
 // Schema User Address
 export const userAddressEntity = () => {
   let addressSchema = new mongoose.Schema<IAddress>({
-    id_user: {type: String, required: true},
     country: {type: String, required: true},
     state: {type: String, required: true},
     city: {type: String, required: true},

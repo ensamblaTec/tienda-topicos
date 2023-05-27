@@ -29,25 +29,27 @@ const Category_orm_1 = require("../domain/orm/Category.orm");
 let CategoryController = class CategoryController {
     /**
      * Endpoint to retreive the users in the Collection "Users" of Database
-     * @param {number} limit
      * @returns all users
      */
     getCategories(limit) {
         return __awaiter(this, void 0, void 0, function* () {
             (0, logger_1.LogSuccess)("[/api/v1/categories] Get All Categories Request");
+            if (!limit) {
+                limit = 5;
+            }
             const response = yield (0, Category_orm_1.getAllCatgories)(limit).then((categories) => {
                 if (!categories)
                     return categories;
-                const response = categories.map((category) => {
-                    category;
+                return categories.map((category) => {
+                    return category.category.pop();
                 });
-                return response;
             });
             return response;
         });
     }
 };
 __decorate([
+    (0, tsoa_1.Get)("/"),
     __param(0, (0, tsoa_1.Query)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),

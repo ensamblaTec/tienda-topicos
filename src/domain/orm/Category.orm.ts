@@ -10,7 +10,7 @@ export const getAllCatgories = async (limit?: number): Promise<any[] | undefined
     try {
         let productModel = productEntity()
         // Search all categories
-        const categories = await productModel.find({}, {category: 1, _id: 0}).limit(limit || 10)
+        const categories = await productModel.find({}, {category: 1, _id: 0}).limit(limit || 5)
         LogSuccess('[ORM SUCCESS]: Getting all categories')
         return categories
     } catch (error) {

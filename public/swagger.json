@@ -22,7 +22,7 @@
 		"securitySchemes": {}
 	},
 	"info": {
-		"title": "to-do-list",
+		"title": "Ecommerce APP",
 		"version": "1.0.0",
 		"description": "Backend with express, typescript",
 		"license": {
@@ -34,6 +34,37 @@
 	},
 	"openapi": "3.0.0",
 	"paths": {
+		"/api/v1/categories": {
+			"get": {
+				"operationId": "GetCategories",
+				"responses": {
+					"200": {
+						"description": "all users",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"description": "Endpoint to retreive the users in the Collection \"Users\" of Database",
+				"tags": [
+					"CategoryController"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "limit",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		},
 		"/api/v1/hello": {
 			"get": {
 				"operationId": "GetMessage",
@@ -60,6 +91,461 @@
 						"in": "query",
 						"name": "name",
 						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/api/v1/products": {
+			"get": {
+				"operationId": "GetProducts",
+				"responses": {
+					"200": {
+						"description": "all products",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"description": "Endpoint to retreive products in the Collection 'products' of Mongo Server",
+				"tags": [
+					"ProductController"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "limit",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "category",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			},
+			"post": {
+				"operationId": "CreateProduct",
+				"responses": {
+					"200": {
+						"description": "product response",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"ProductController"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"description": "Product Object",
+						"in": "query",
+						"name": "product",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/api/v1/products/{id}": {
+			"get": {
+				"operationId": "GetProduct",
+				"responses": {
+					"200": {
+						"description": "product response",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"ProductController"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"description": "ID product",
+						"in": "query",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			},
+			"put": {
+				"operationId": "UpdateProduct",
+				"responses": {
+					"200": {
+						"description": "product response",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"ProductController"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"description": "Product with update properties",
+						"in": "query",
+						"name": "product",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"description": "ID product",
+						"in": "query",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/api/v1/products/categories/{id}": {
+			"get": {
+				"operationId": "GetCategories",
+				"responses": {
+					"200": {
+						"description": "an array categories",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"ProductController"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"description": "ID Product",
+						"in": "query",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/api/v1/suppliers": {
+			"get": {
+				"operationId": "GetSuppliers",
+				"responses": {
+					"200": {
+						"description": "get suppliers",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"description": "Endpoint to retreive the suppliers in the Collection \"Suppliers\" of Database",
+				"tags": [
+					"SuppliersController"
+				],
+				"security": [],
+				"parameters": []
+			},
+			"post": {
+				"operationId": "Create",
+				"responses": {
+					"200": {
+						"description": "create response",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"SuppliersController"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "supplier",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/api/v1/suppliers/{id}": {
+			"get": {
+				"operationId": "GetSupplier",
+				"responses": {
+					"200": {
+						"description": "get supplier",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"SuppliersController"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"description": "ID supplier",
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			},
+			"put": {
+				"operationId": "UpdateSupplier",
+				"responses": {
+					"200": {
+						"description": "update response",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"SuppliersController"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"description": "Supplier object",
+						"in": "query",
+						"name": "supplier",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"description": "ID Supplier",
+						"in": "query",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/api/v1/users/address": {
+			"get": {
+				"operationId": "GetUserAddress",
+				"responses": {
+					"200": {
+						"description": "all Suppliers",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"description": "Endpoint to retreive the suppliers in the Collection \"Suppliers\" of Database",
+				"tags": [
+					"UserAddressController"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/api/v1/users": {
+			"get": {
+				"operationId": "GetUsers",
+				"responses": {
+					"200": {
+						"description": "all users",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"description": "Endpoint to retreive the users in the Collection \"users\" of Database",
+				"tags": [
+					"UserController"
+				],
+				"security": [],
+				"parameters": []
+			},
+			"post": {
+				"operationId": "Create",
+				"responses": {
+					"200": {
+						"description": "User or undefided value",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"description": "Endpoint to update an user by ID from Collection 'users' of Mongo Server",
+				"tags": [
+					"UserController"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"description": "User Object",
+						"in": "query",
+						"name": "user",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/api/v1/users/{id}": {
+			"get": {
+				"operationId": "GetUserByID",
+				"responses": {
+					"200": {
+						"description": "User or undefided value",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"description": "Endpoint to retreive an user by ID from Collection \"users\" of Database",
+				"tags": [
+					"UserController"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"description": "Param ID user",
+						"in": "query",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			},
+			"put": {
+				"operationId": "UpdateUserByID",
+				"responses": {
+					"200": {
+						"description": "User or undefided value",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"description": "Endpoint to update an user by ID from Collection 'users' of Mongo Server",
+				"tags": [
+					"UserController"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"description": "User Object",
+						"in": "query",
+						"name": "user",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/api/v1/users/{id}/payments": {
+			"get": {
+				"operationId": "GetPayments",
+				"responses": {
+					"200": {
+						"description": "Payments array",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"description": "Endpoint to get all payments by id user from Collection 'users' of Mongo Server",
+				"tags": [
+					"UserController"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"description": "ID user",
+						"in": "query",
+						"name": "id",
+						"required": true,
 						"schema": {
 							"type": "string"
 						}

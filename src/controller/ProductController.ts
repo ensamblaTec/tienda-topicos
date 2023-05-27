@@ -1,13 +1,13 @@
 import { Get, Post, Put, Query, Route, Tags } from "tsoa";
 import { IProductController } from "./interfaces";
-import { LogSuccess, LogError } from "../utils/logger";
+import { LogSuccess } from "../utils/logger";
 
 // ORM
 import {
   getAllProducts,
   getProductByID,
   updateProductByID,
-  deleteProductByID,
+  // deleteProductByID,
   createProduct,
   getCategoriesByProductId,
 } from "../domain/orm/Product.orm";
@@ -44,13 +44,13 @@ export class ProductController implements IProductController {
 
   /**
    *
-   * @param product Product with update properties
+   * @param {Object} product Product with update properties
    * @param {string} id ID product
    * @returns product response
    */
   @Put("/:id")
   public async updateProduct(
-    @Query() product: Object,
+    @Query() product: any,
     @Query() id: string
   ): Promise<any> {
     LogSuccess(
@@ -68,7 +68,7 @@ export class ProductController implements IProductController {
    * @returns product response
    */
   @Post("/")
-  public async createProduct(@Query() product: Object): Promise<any> {
+  public async createProduct(@Query() product: any): Promise<any> {
     LogSuccess(`create product with properties ${product}`);
 
     const response = await createProduct(product);
@@ -81,7 +81,7 @@ export class ProductController implements IProductController {
    * @param {string} id ID Product
    * @returns an array categories
    */
-  @Get("/:id")
+  @Get("/categories/:id")
   public async getCategories(@Query() id: string): Promise<any[]> {
     LogSuccess(`get categories from product with id ${id}`);
 

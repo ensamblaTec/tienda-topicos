@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteSupplier = exports.createSupplier = exports.updateSupplierByID = exports.getSupplierByID = exports.getAllSuppliers = void 0;
+exports.createSupplier = exports.updateSupplierByID = exports.getSupplierByID = exports.getAllSuppliers = void 0;
 const Supplier_entity_1 = require("../entities/Supplier.entity");
 const logger_1 = require("../../utils/logger");
 // CRUD REQUEST
@@ -91,8 +91,7 @@ exports.createSupplier = createSupplier;
 /**
  * Method to delete a supplier from Collection 'suppliers' in Mongo Server
  */
-const deleteSupplier = (id) => __awaiter(void 0, void 0, void 0, function* () { });
-exports.deleteSupplier = deleteSupplier;
+// export const deleteSupplier = async (id: string): Promise<any> => {};
 // TODO
 // GET user by id
 // GET user by email

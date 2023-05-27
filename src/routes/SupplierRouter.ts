@@ -1,5 +1,4 @@
 import express, { Request, Response } from "express";
-import { LogInfo } from "../utils/logger";
 import { SupplierController } from "../controller/SupplierController";
 
 // Router from express

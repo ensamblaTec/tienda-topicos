@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import { IOrderDetail } from "../interface/IOrderDetail.interface";
-import { order } from '../../controller/types'
+// import { order } from '../../controller/types'
 // Schema
 export const orderDetailEntity = () => {
   let orderDetailSchema = new mongoose.Schema<IOrderDetail>({
