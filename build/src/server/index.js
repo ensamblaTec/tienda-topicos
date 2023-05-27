@@ -11,7 +11,8 @@ const swagger_ui_express_1 = __importDefault(require("swagger-ui-express"));
 // Security
 const cors_1 = __importDefault(require("cors"));
 const helmet_1 = __importDefault(require("helmet"));
-// Https
+// COOKIE
+const cookie_parser_1 = __importDefault(require("cookie-parser"));
 // Root Router
 const routes_1 = __importDefault(require("../routes"));
 const mongoose_1 = __importDefault(require("mongoose"));
@@ -32,11 +33,13 @@ server.use(express_1.default.json({ limit: "20mb" }));
 // * Security Config
 server.use((0, helmet_1.default)());
 server.use((0, cors_1.default)());
+// Static sever
+server.use(express_1.default.static("public"));
+// JWT
+server.use((0, cookie_parser_1.default)());
 // Define SERVER to use /api/v1 and execute rootRouter
 // From this point onover:  http://localhost:8000/api/v1/...
 server.use("/api/v1", routes_1.default);
-// Static sever
-server.use(express_1.default.static("public"));
 // TODO: Mongoose Connection ${process.env.PASSWORD_MONGO}
 mongoose_1.default.connect(`mongodb+srv://wedeeb:${process.env.PASSWORD_MONGO}@projects.camurfu.mongodb.net/tapw-ecommerce?retryWrites=true&w=majority`);
 // * Redirections Config

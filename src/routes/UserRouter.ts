@@ -1,5 +1,6 @@
 import express, { Request, Response } from "express";
 import { UserController } from "../controller/UsersController";
+import { authenticateToken } from "../domain/middleware/authentication";
 
 // Router from express
 let userRouter = express.Router();

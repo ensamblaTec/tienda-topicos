@@ -10,7 +10,8 @@ import SwaggerUi from "swagger-ui-express";
 import cors from "cors";
 import helmet from "helmet";
 
-// Https
+// COOKIE
+import cookieParser from "cookie-parser";
 
 // Root Router
 import routes from "../routes";
@@ -42,12 +43,15 @@ server.use(express.json({ limit: "20mb" }));
 server.use(helmet());
 server.use(cors());
 
+// Static sever
+server.use(express.static("public"));
+
+// JWT
+server.use(cookieParser())
+
 // Define SERVER to use /api/v1 and execute rootRouter
 // From this point onover:  http://localhost:8000/api/v1/...
 server.use("/api/v1", routes);
-
-// Static sever
-server.use(express.static("public"));
 
 // TODO: Mongoose Connection ${process.env.PASSWORD_MONGO}
 mongoose.connect(`mongodb+srv://wedeeb:${process.env.PASSWORD_MONGO}@projects.camurfu.mongodb.net/tapw-ecommerce?retryWrites=true&w=majority`)
